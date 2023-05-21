@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const getNotes = async () => {
@@ -24,3 +25,17 @@ const NotesPage = async () => {
 }
 
 export default NotesPage
+
+const Note = ({ note }: { note: any }) => {
+  const { id, title, content, created } = note || {}
+
+  return (
+    <Link href={note.id}>
+      <div>
+        <h2>{title}</h2>
+        <h5>{content}</h5>
+        <p>{created}</p>
+      </div>
+    </Link>
+  )
+}
