@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import CreateNote from './CreateNote'
 
 const getNotes = async () => {
   const res = await fetch(
@@ -14,13 +15,14 @@ const NotesPage = async () => {
   const notes = await getNotes()
 
   return (
-    <div>
+    <div className='h-screen'>
       <h1>Notes</h1>
-      <div className='w-[810px] max-w-full mx-auto my-3 flex gap-10 h-screen'>
+      <div className='w-[810px] max-w-full mx-auto my-3 flex gap-10 flex-wrap'>
         {notes?.map((note) => {
-          return <Note key={note._id} note={note} />
+          return <Note key={note.id} note={note} />
         })}
       </div>
+      <CreateNote />
     </div>
   )
 }
